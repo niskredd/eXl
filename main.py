@@ -1,25 +1,40 @@
-from openpyxl import Workbook
+from excel import Automate_excel
+from directory_handling import Diretory_edit
 
 
-workbook = Workbook()
-sheet = workbook.active
+class Menus:
 
-sheet["A1"] = "hello"
-sheet["B1"] = "world!"
-
-workbook.save(filename="hello_world.xlsx")
-
-
-class excel_workbook:
-
-    def __init__(self, path, file):
-        self.path = path
-        self.file = file
-
-    def write_to_sheet(self, sheet, data_dir):
-
+    def __init__(self):
+        print("Velkommen \n  Hva ønser du å gjøre?")
+        print("For nytt prosjket skriv: new")
+        print("For akonto: edit")
+        print("For for å bytte: exit")
+    
+    def add_new_prodject(self):
+        pass
+    
+    def edit_prodject(self):
+        pass
         
+    def change_prodject(self):
+        pass
+    
+    def print_menu(self):
+        print("For nytt prosjket skriv: new")
+        print("For akonto: edit")
+        print("For for å bytte: exit")
+    
 
-        for data in len(data_dir):
-            
+def main():
+    
+    action = input()
+    
+    if action == 'new':
+        new_prodject = Automate_excel(action)
+    
+    
 
+try:
+    main()
+except KeyboardInterrupt:
+    print("Good bye . . . ")

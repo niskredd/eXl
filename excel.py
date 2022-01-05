@@ -1,14 +1,26 @@
 from openpyxl import workbook, load_workbook
+from directory_handling import Diretory_edit
 
 class Automate_excel:
 
-    def __init__(self, filename):
-        self.wb =load_workbook('Book.xlsx')
-        self.filemane = filename
-
+    def __init__(self, state):
+        if state == 'new':
+            self.state = state
+            self.wb = load_workbook('Book.xlsx')
+            self.p_nr = input("Prosjektnummer:")
+            self.address = input("Addresse:")
+            self.dirs_h = Diretory_edit()
+            self.dirs_h.change_dir(self.dirs_h.set_dir(str(self.p_nr) + " - " + self.address))
+            self.fillin_sheet()
+        elif state == 'edit':
+            self.dirs_h = Diretory_edit()
+            
+            
+        else:
+            print("No mach")
 
     def save_wb(self):
-        self.wb.save(self.filemane + ".xlsx")
+        self.wb.save(str(self.p_nr) + " - " + self.address + ".xlsx")
 
 
     def write_to_cell(self, sheet, data, cell):
@@ -19,6 +31,8 @@ class Automate_excel:
 
     def create_sheet(self, name):
         self.wb.create_sheet(name)
+        self.dirs_h.content()
+        
 
 
     def creat_akonto(self, sum, beskrivelse, nr):
@@ -41,7 +55,10 @@ class Automate_excel:
         ws = self.wb['Fylles ut først']
 
         try:
-            ws['B4'] = input(ws['A4'].value + ":  ")
+            if self.state == 'new':
+                ws['B4'] = self.p_nr
+            else:
+                ws['B4'] = input(ws['A4'].value + ":  ")
             ws['B3'] = input(ws['A3'].value + ":  ")
             ws['B5'] = input(ws['A5'].value + ":  ")
             ws['B6'] = input(ws['A6'].value + ":  ")
