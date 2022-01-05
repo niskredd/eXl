@@ -5,7 +5,7 @@ import os
 class Diretory_edit:
 
     def __init__(self):
-        self.path = "C:\\Users\\NilsAndreasSkreddern\\Frøiland Bygg Skade AS\\FBS Fellesområde - 833 Nils Andreas Skreddernes"
+        self.path = os.getcwd() 
 
     def create_dir(self, dir_name):
         os.makedirs(name=dir_name)
@@ -42,8 +42,5 @@ class Diretory_edit:
 
 
 if __name__ == "__main__":
-    cdir = Diretory_edit()
-
-    cdir.set_dir('Test')
-    cdir.starts_with_dir('Test')
+    print(os.chmod())
     

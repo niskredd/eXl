@@ -14,6 +14,7 @@ class Automate_excel:
             self.fillin_sheet()
         elif state == 'edit':
             self.dirs_h = Diretory_edit()
+            print(self.dirs_h.content())
             
             
         else:

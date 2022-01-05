@@ -10,8 +10,14 @@ class Menus:
         print("For akonto: edit")
         print("For for å bytte: exit")
     
-    def add_new_prodject(self):
-        pass
+    def add_new_prodject(self, action):
+        while 1:
+            new_prodject = Automate_excel(action)
+
+            new_prodject.wb_save()
+
+            if input() == exit:
+                break
     
     def edit_prodject(self):
         pass
@@ -26,12 +32,15 @@ class Menus:
     
 
 def main():
+    while 1:
+        menu = Menus()
+        action = input()
     
-    action = input()
-    
-    if action == 'new':
-        new_prodject = Automate_excel(action)
-    
+        if action == 'new':
+            new_prodject = Automate_excel(action)
+
+        if action == 'edit':
+            edit_prodject = Automate_excel(action)
     
 
 try:
