@@ -1,6 +1,6 @@
 import pandas as pd
 import plotly.express as px
-import sreamlit as st
+import streamlit as st
 
 st.set_page_config(page_title='Prosjekt info',
                    page_icon=":bar_chart:",
@@ -14,7 +14,7 @@ df = pd.read_excel(
     engine='openpyxl',
     sheet_name='Fylles ut først',
     usecols='A:D',
-    nrows=20,
+    nrows=20
 )
 
 
