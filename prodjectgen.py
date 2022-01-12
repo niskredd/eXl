@@ -1,7 +1,8 @@
 import datetime
 import PySimpleGUI as sg
-from openpyxl.descriptors.base import NoneSet
 import pandas as pd
+from excel import Automate_excel
+
 
 sg.theme('DarkTeal9')
 
@@ -28,7 +29,7 @@ window = sg.Window('Nytt Prosjekt', layout)
 def clear_input():
     for key in values:
         window[key]('')
-    return NoneSet
+    return None
 
 
 while True:
