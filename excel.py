@@ -3,12 +3,12 @@ from directory_handling import Diretory_edit
 
 class Automate_excel:
 
-    def __init__(self, state):
+    def __init__(self, state, p_nr, addre):
         if state == 'new':
             self.state = state
             self.wb = load_workbook('Book.xlsx')
-            self.p_nr = input("Prosjektnummer:")
-            self.address = input("Addresse:")
+            self.p_nr = p_nr
+            self.address = addre
             self.dirs_h = Diretory_edit()
             self.dirs_h.change_dir(self.dirs_h.set_dir(str(self.p_nr) + " - " + self.address))
             self.fillin_sheet()

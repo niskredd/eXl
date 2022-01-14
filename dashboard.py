@@ -10,29 +10,29 @@ st.set_page_config(page_title='Prosjekt info',
 
 
 df = pd.read_excel(
-    io='book.xlsx',
+    io='C:\\Users\\NilsAndreasSkreddern\\Frøiland Bygg Skade AS\\FBS Fellesområde - 833 Nils Andreas Skreddernes\\833 Nils Andreas Skreddernes Prosjektliste 2022.xlsx',
     engine='openpyxl',
-    sheet_name='Fylles ut først',
-    usecols='A:D',
-    nrows=20
+    usecols='A:S',
+    nrows=30,
+    skiprows=14
 )
 
 
-st.dataframe(df)
+st.dataframe(df.astype(str))
 
 
 # ---- Sidebar ----
 st.sidebar.header("Plese Filter Here:")
 company = st.sidebar.multiselect(
     "Select Company:",
-    option=df[''].unique(),
-    defalut=df[''].unique()
+    option=df['IF Skadeforsikring', 'Gjensidige', 'Tryg', 'KLP', 'Knif', 'Landkreditt'].unique(),
+    defalut=df[None].unique()
 )
 
 active = st.sidebar.multiselect(
     "Select Status:",
-    option=df[''].unique(),
-    defalut=df[''].unique()
+    option=df[ 'Besiktiget', 'Klakulert', 'Arbidpågår', 'Klar til fakurering', 'Ferdig'].unique(),
+    defalut=df['Besiktiget', 'Klakulert', 'Arbidpågår', 'Klar til fakurering', 'Ferdig'].unique()
 )
 
 df_selection = df.query(
