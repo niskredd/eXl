@@ -3,37 +3,48 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+prod_dict = {
+    'Addresse'      : '',
+    'Postnummer'    : '',
+    'Poststed'      : '',
+    'Selskap'       : '',
+    'Type'          : '',
+    'Skadenummer'   : '',
+    'Kunde'         : '',
+    'Årsak'         : ''
+}
+
 st.header('Legg til prosjektinfo')
 
-address = st.text_input('Addresse')
+prod_dict['Addresse'] = st.text_input('Addresse')
 
-col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 with col1:
-    post_nr = st.text_input('Postnummer')
+    prod_dict['Postnummer'] = st.text_input('Postnummer')
 with col2:
-    city = st.text_input('Poststed')
+    prod_dict['Poststed'] = st.text_input('Poststed')
 
 
-col21, col22 = st.columns(2)
+col21, col22 = st.beta_columns(2)
 with col21:
-    oe_type =  st.selectbox(
+    prod_dict['Type'] =  st.selectbox(
         'Type',
         ('Fakturerbar', 'Reklamasjon', 'Internt'))
 
 
 with col22:
-    cause = st.selectbox(
+    prod_dict['Årsak'] = st.selectbox(
         'Skadeårsak',
         ('Vann', 'Skadedyr', 'Håndverk', 'Innbo/Løsøre', 'Reklamasjon')        
     )
 
 
-col31, col32 = st.columns(2)
+col31, col32 = st.beta_columns(2)
 with col31:
-    company = st.selectbox(
+    prod_dict['Selskap'] = st.selectbox(
         'Forsikringsleskap',
         ('IF Skadeforsikring', 'Gjensidige', 'KLP', 'Insr', 'Tryg', 'Frende', 'Landkreditt')
     )
 
 with col32:
-    com_referance = st.text_input('Skadenummer')
+    prod_dict['Skadenummer'] = st.text_input('Skadenummer')
