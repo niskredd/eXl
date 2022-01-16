@@ -1,6 +1,8 @@
 from excel import Automate_excel
 from directory_handling import Diretory_edit
 
+path = "C:\\Users\\NilsAndreasSkreddern\\Frøiland Bygg Skade AS\\FBS Fellesområde - 833 Nils Andreas Skreddernes\\"
+
 
 class Menus:
 
@@ -11,7 +13,7 @@ class Menus:
         print("For for å bytte: exit")
     
 
-    def add_new_prodject(self, action):
+    def add_new_prodject(self, action, path):
         
         new_prodject = Automate_excel(action)
         new_prodject.wb_save()
