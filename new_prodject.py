@@ -13,17 +13,20 @@ with col1:
 with col2:
     city = st.text_input('Poststed')
 
+
 col21, col22 = st.columns(2)
 with col21:
     oe_type =  st.selectbox(
         'Type',
         ('Fakturerbar', 'Reklamasjon', 'Internt'))
 
+
 with col22:
     cause = st.selectbox(
         'Skadeårsak',
         ('Vann', 'Skadedyr', 'Håndverk', 'Innbo/Løsøre', 'Reklamasjon')        
     )
+
 
 col31, col32 = st.columns(2)
 with col31:

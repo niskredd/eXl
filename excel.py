@@ -3,8 +3,9 @@ from directory_handling import Diretory_edit
 
 class Automate_excel:
 
-    def __init__(self, state, p_nr, addre):
+    def __init__(self, state, p_nr, addre, path):
         if state == 'new':
+            self.path = path
             self.state = state
             self.wb = load_workbook('Book.xlsx')
             self.p_nr = p_nr
@@ -21,7 +22,7 @@ class Automate_excel:
             print("No mach")
 
     def save_wb(self):
-        self.wb.save(str(self.p_nr) + " - " + self.address + ".xlsx")
+        self.wb.save(self.path + str(self.p_nr) + " - " + self.address + ".xlsx")
 
 
     def write_to_cell(self, sheet, data, cell):
