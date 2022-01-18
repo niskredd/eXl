@@ -35,7 +35,7 @@ with col21:
 with col22:
     prod_dict['Årsak'] = st.selectbox(
         'Skadeårsak',
-        ('Vann', 'Skadedyr', 'Håndverk', 'Innbo/Løsøre', 'Reklamasjon')        
+        ('Vann', 'Skadedyr', 'Håndverk', 'Innbo/Løsøre', 'Reklamasjon', 'Annet')        
     )
 
 
