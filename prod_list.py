@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import date
-
+from openpyxl import workbook, load_workbook
 
 
 pathg = "C:\\Users\\Nils\\OneDrive\\Documents\\Programering\\Python\\Excel 2\\eXl"
@@ -17,22 +17,21 @@ class Prosject_list():
         self.file = pd.read_excel(path + '\\' + file)
         
         key1 = self.file.keys()
-        self.df = pd.DataFrame(self.file, index=range(14,314), columns=key1)
+        self.df = pd.DataFrame(self.file, index=range(14,513), columns=key1)
         
-
-    def save_wb(self):
-        self.df.to_excel(copy_file, index=False)     
     
     def check_free_row(self):
-        for num in range(14,314):
+        for num in range(14,513):
             if self.df.loc[num].isnull().values.any():
                 return num
             else:
                 return 666
     
+    
     def add_prodject(self, dict_info):
-        dfr = self.df.iloc[self.check_free_row()]
+        dfr = self.df.iloc[self.check_free_row()-10]
         dfr.columns = self.df.keys()
+        dict_info.update({'Dato': str(date.today())})
         dfr[0] = date.today()
         dict_info.update({'Prosjektnummer': str(dfr[1])})
         dfr[2] = dict_info['Arbeidssted/Prosjekt']
@@ -44,14 +43,18 @@ class Prosject_list():
         dfr[8] = dict_info['Selskap' ]
         dfr[9] = dict_info['skadenummer']
         dfr[10] = dict_info['Navn på kunde' ]
-        
 
+        print(pd)
         return dict_info
+    
     
     def print_file(self):
         print(self.file)
         print(self.df)
+   
 
+    def save_wb(self):
+        pass
         
 
 
@@ -67,7 +70,8 @@ if __name__ == "__main__":
         'Navn på kunde'         : 'Knut',
         'Skadeårsak'            : 'Vann',
         'Prosjektnummer'        : '',
-        'Info'                  : "Rørbrudd"
+        'Info'                  : "Rørbrudd",
+        'Dato'                  : ''
     }
     
     
@@ -76,4 +80,3 @@ if __name__ == "__main__":
     print(pl.add_prodject(prod_dict))
     
     pl.save_wb()
-    pl.print_file()
