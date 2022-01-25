@@ -3,30 +3,17 @@ from directory_handling import Diretory_edit
 
 class Automate_excel:
 
-    def __init__(self, state, prod_dict, path):
-        if state == 'new':
-            self.path = path
-            self.state = state
-            self.wb = load_workbook('Book.xlsx')
-            self.p_nr = prod_dict['Prosjektnummer']
-            self.address = prod_dict['Addresse']
-            self.dirs_h = Diretory_edit()
-            self.dirs_h.change_dir(self.dirs_h.set_dir(str(self.p_nr) + " - " + self.address))
-            self.fillin_sheet(prod_dict)
-        elif state == 'edit':
-            self.dirs_h = Diretory_edit()
-            print(self.dirs_h.content())
-            
-            
-        else:
-            print("No mach")
+    def __init__(self, data, path, file):
+        self.path = path
+        self.file = file
+        self.data = data
 
     def save_wb(self):
-        self.wb.save(self.path + str(self.p_nr) + " - " + self.address + ".xlsx")
+        self.wb.save(self.path + str(self.p_nr) + " - " + self.data['Addresse'] + ".xlsx")
 
 
     def write_to_cell(self, sheet, data, cell):
-        ws = self.wb[sheet] 
+        ws = self.wb[sheet]
         ws[cell].value = data
         self.wb[sheet] = ws
 
@@ -34,10 +21,10 @@ class Automate_excel:
     def create_sheet(self, name):
         self.wb.create_sheet(name)
         self.dirs_h.content()
-        
 
 
-    def creat_akonto(self, sum, beskrivelse, nr):
+
+    def creat_akonto(self, akonto_data, nr):
         new_akonto = 'Akonto ' + str(nr)
 
         self.create_sheet(new_akonto)
@@ -57,7 +44,7 @@ class Automate_excel:
         ws = self.wb['Fylles ut først']
 
         try:
-            
+
             ws['B4'] = prod_dict['Prosjektnummer']
             ws['B3'] = prod_dict['Skadetype']
             ws['B5'] = prod_dict['Skadenummer']

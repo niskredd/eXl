@@ -9,15 +9,15 @@ st.set_page_config(page_title='Prosjekt info',
 
 
 df = pd.read_excel(
-    #io='C:\\Users\\NilsAndreasSkreddern\\Frøiland Bygg Skade AS\\FBS Fellesområde - 833 Nils Andreas Skreddernes\\833 Nils Andreas Skreddernes Prosjektliste 2022.xlsx',
-    io='C:\\Users\\Nils\\OneDrive\\Documents\\Programering\\Python\\Excel 2\\eXl\\833 Nils Andreas Skreddernes Prosjektliste 2022.xlsx',
+    io='C:\\Users\\NilsAndreasSkreddern\\Desktop\\eXl\\833 Nils Andreas Skreddernes Prosjektliste 2022.xlsx',
+    #io='C:\\Users\\Nils\\OneDrive\\Documents\\Programering\\Python\\Excel 2\\eXl\\833 Nils Andreas Skreddernes Prosjektliste 2022.xlsx',
     engine='openpyxl',
     usecols='A:S',
-    nrows=200,
+    nrows=10,
     skiprows=14
 )
 
-st.title(":bar_chart: Prosjekt Dashbord")
+st.title(":bar_chart: Prosjektliste")
 st.header("2022")
 hide_dataframe_row_index = """
             <style>
@@ -48,8 +48,50 @@ df_selection = df.query(
     "Selskap == @company & 'Status på skadesaken' == @state"
 )
 
+prod_dict = {
+    'Addresse'      : '',
+    'Postnummer'    : '',
+    'Poststed'      : '',
+    'Selskap'       : '',
+    'Type'          : '',
+    'Skadenummer'   : '',
+    'Kunde'         : '',
+    'Årsak'         : ''
+}
+
+st.header('Legg til prosjektinfo')
+
+prod_dict['Addresse'] = st.text_input('Addresse')
+
+col1, col2 = st.columns(2)
+with col1:
+    prod_dict['Postnummer'] = st.text_input('Postnummer')
+with col2:
+    prod_dict['Poststed'] = st.text_input('Poststed')
 
 
+col21, col22 = st.columns(2)
+with col21:
+    prod_dict['Type'] =  st.selectbox(
+        'Type',
+        ('Fakturerbar', 'Reklamasjon', 'Internt'))
 
 
-totale = int(df_selection['Fakturert'].sum())
+with col22:
+    prod_dict['Årsak'] = st.selectbox(
+        'Skadeårsak',
+        ('Vann', 'Skadedyr', 'Håndverk', 'Innbo/Løsøre', 'Reklamasjon', 'Annet')
+    )
+
+
+col31, col32 = st.columns(2)
+with col31:
+    prod_dict['Selskap'] = st.selectbox(
+        'Forsikringsleskap',
+        ('IF Skadeforsikring', 'Gjensidige', 'KLP', 'Insr', 'Tryg', 'Frende', 'Landkreditt')
+    )
+
+with col32:
+    prod_dict['Skadenummer'] = st.text_input('Skadenummer')
+
+st.button("Opprett")

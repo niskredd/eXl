@@ -9,15 +9,15 @@ class Automate_excel:
             self.state = state
             self.wb = load_workbook('Book.xlsx')
             self.p_nr = p_nr
-            self.address = addre
+            self.address = input("Addresse:         ")
             self.dirs_h = Diretory_edit()
             self.dirs_h.change_dir(self.dirs_h.set_dir(str(self.p_nr) + " - " + self.address))
             self.fillin_sheet()
         elif state == 'edit':
             self.dirs_h = Diretory_edit()
             print(self.dirs_h.content())
-            
-            
+
+
         else:
             print("No mach")
 
@@ -26,7 +26,7 @@ class Automate_excel:
 
 
     def write_to_cell(self, sheet, data, cell):
-        ws = self.wb[sheet] 
+        ws = self.wb[sheet]
         ws[cell].value = data
         self.wb[sheet] = ws
 
@@ -34,7 +34,7 @@ class Automate_excel:
     def create_sheet(self, name):
         self.wb.create_sheet(name)
         self.dirs_h.content()
-        
+
 
 
     def creat_akonto(self, sum, beskrivelse, nr):
@@ -78,6 +78,9 @@ class Automate_excel:
 
         except KeyboardInterrupt:
             self.save_wb()
+
+    def append_excel(self, dfr):
+        self.df(dfr)
 
 
 if __name__ == "__main__":
